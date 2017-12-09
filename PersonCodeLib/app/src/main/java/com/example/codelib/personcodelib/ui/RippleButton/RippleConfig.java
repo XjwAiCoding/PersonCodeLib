@@ -22,8 +22,6 @@ public class RippleConfig {
     /* background image*/
     private Drawable backgroundDrawable = null;
 
-    /* scale type of background image*/
-    private ImageView.ScaleType scaleType = ImageView.ScaleType.FIT_CENTER;
 
     /* max ripple radius. */
     private int maxRippleRadius = RippleUtil.MAX_RIPPLE_RADIUS;
@@ -118,15 +116,8 @@ public class RippleConfig {
         return backgroundDrawable;
     }
 
-    public ImageView.ScaleType getScaleType() {
-        return scaleType;
-    }
-
     public void setBackgroundDrawable(Drawable backgroundDrawable) {
         this.backgroundDrawable = backgroundDrawable;
     }
 
-    public void setScaleType(ImageView.ScaleType scaleType) {
-        this.scaleType = scaleType;
-    }
 }

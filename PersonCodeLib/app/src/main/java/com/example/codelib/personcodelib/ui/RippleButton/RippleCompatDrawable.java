@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -15,6 +16,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.SystemClock;
+import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Interpolator;
@@ -23,6 +25,7 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 
 public class RippleCompatDrawable extends Drawable implements View.OnTouchListener {
+
     private enum Speed {PRESSED, NORMAL}
 
     public enum Type {CIRCLE, HEART, TRIANGLE}
@@ -107,7 +110,7 @@ public class RippleCompatDrawable extends Drawable implements View.OnTouchListen
     }
 
     @Override
-    public void draw(Canvas canvas) {
+    public void draw(@NonNull Canvas canvas) {
         //clipRect：裁剪画布，只会显示被裁减的区域，之外的区域将不会显示
         if (mBackgroundDrawable == null) {
             canvas.clipRect(mClipBound);
@@ -123,7 +126,7 @@ public class RippleCompatDrawable extends Drawable implements View.OnTouchListen
         canvas.scale(mScale, mScale);
         mRipplePaint.setAlpha(mAlpha);
         canvas.drawPath(mRipplePath, mRipplePaint);
-        canvas.restore();//用来恢复一系列操作的状态之后的状态，当和canvas.save( )一起使用时，恢复到canvas.save( )保存时的状态。
+        canvas.restore();//用来恢复一系列操作的状态之后的状态，当和canvas.save()一起使用时，恢复到canvas.save()保存时的状态。
     }
 
     @Override
@@ -139,7 +142,7 @@ public class RippleCompatDrawable extends Drawable implements View.OnTouchListen
 
     @Override
     public int getOpacity() {
-        return 0;
+        return PixelFormat.UNKNOWN;
     }
 
     private long elapsedOffset = 0;
